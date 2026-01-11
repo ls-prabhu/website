@@ -1,0 +1,19 @@
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    # This looks for index.html inside the /templates folder
+    return render_template('index.html')
+
+@app.route('/book', methods=['POST'])
+def book_slot():
+    # Access the data sent from the HTML form
+    name = request.form.get('name')
+    ration_no = request.form.get('ration_no')
+    
+    return f"Success! Token generated for {name} (Ration No: {ration_no})"
+
+if __name__ == '__main__':
+    app.run(debug=True)
